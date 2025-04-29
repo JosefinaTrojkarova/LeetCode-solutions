@@ -1,4 +1,4 @@
-// Last updated: 4/29/2025, 7:39:27 AM
+// Last updated: 4/29/2025, 7:41:12 AM
 type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
 type OnceFn = (...args: JSONValue[]) => JSONValue | undefined
 
@@ -6,7 +6,7 @@ function once(fn: Function): OnceFn {
     let called = false
 
     return function (...args) {
-        if (called) return undefined
+        if (called) return
         called = true
         return fn(...args)
     };
