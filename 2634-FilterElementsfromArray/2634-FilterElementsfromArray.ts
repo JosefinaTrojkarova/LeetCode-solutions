@@ -1,8 +1,16 @@
-// Last updated: 4/28/2025, 10:17:47 PM
-function map(arr: number[], fn: (n: number, i: number) => number): number[] {
-    let newArr = arr;
-    for (let i = 0; arr.length > i; i++) {
-        newArr[i] = fn(arr[i], i);
+// Last updated: 4/29/2025, 7:26:59 AM
+type F = (x: number) => number;
+
+function compose(functions: F[]): F {
+    
+    return function(x) {
+        let result = x
+        functions.reverse().forEach((func) => result = func(result))
+        return result
     }
-    return newArr;
 };
+
+/**
+ * const fn = compose([x => x + 1, x => 2 * x])
+ * fn(4) // 9
+ */
