@@ -1,15 +1,19 @@
-// Last updated: 5/1/2025, 8:05:11 PM
+// Last updated: 5/1/2025, 8:20:28 PM
 type MultiDimensionalArray = (number | MultiDimensionalArray)[];
 
 var flat = function (arr:  MultiDimensionalArray, n: number):  MultiDimensionalArray {
     let result = arr
     for (let i = 1; i <= n; i++) {
         const nextResult = []
-        result.forEach((val) => {
-            if (Array.isArray(val)) {
-                val.forEach((v) => nextResult.push(v))
-            } else nextResult.push(val)
-        })
+        for (const item of result) {
+            if (!Array.isArray(item)) {
+                nextResult.push(item)
+            } else {
+                for (const number of item) {
+                    nextResult.push(number)
+                }
+            }
+        }
         result = nextResult
     }
     return result
