@@ -1,4 +1,4 @@
-// Last updated: 5/1/2025, 7:38:50 PM
+// Last updated: 5/1/2025, 7:39:26 PM
 type JSONValue = null | boolean | number | string | JSONValue[] | { [key: string]: JSONValue };
 type ArrayType = { id: number } & Record<string, JSONValue>;
 
@@ -24,12 +24,4 @@ function join(arr1: ArrayType[], arr2: ArrayType[]): ArrayType[] {
     // Return sorted result by id and sort keys alphabetically within each object
     return Array.from(map.values())
         .sort((a, b) => a.id - b.id)
-        .map((item) => {
-            const sortedKeys = Object.keys(item).sort();
-            const sortedItem: ArrayType = {} as ArrayType;
-            for (const key of sortedKeys) {
-                sortedItem[key] = item[key];
-            }
-            return sortedItem;
-        });
 }
